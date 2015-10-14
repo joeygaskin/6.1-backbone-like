@@ -1,14 +1,17 @@
-var models = require('models');
-var views = require('views');
+var Likes = require('models/likes');
+
+window.likes = new Likes();
 
 $(document).ready(function(){
   $('body').prepend(JST.application());
 
-  var view = new PostsView();
+  $("#addbutton").on("click", function() {
+    likes.increase();
+  $("#addbutton").text(likes.get("count") + "likes")
 
-  $(document).on('posts:fetched', function(event, posts){
-    view.showPosts(posts);
-  });
-
-  Post.fetch();
 });
+
+
+
+});
+module.exports = Likes;
